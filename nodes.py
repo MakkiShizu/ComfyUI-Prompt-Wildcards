@@ -23,7 +23,16 @@ class makiwildcards:
                     {"default": 1, "min": 1, "max": 10, "step": 1},
                 ),
                 "seed": ("INT", {"default": 0, "min": 0, "max": 0xFFFFFFFFFFFFFFFF}),
-            }
+            },
+            "optional": {
+                "text": (
+                    "STRING",
+                    {
+                        "default": "",
+                        "multiline": True,
+                    },
+                ),
+            },
         }
 
         for i in range(1, 10):
@@ -39,7 +48,7 @@ class makiwildcards:
     FUNCTION = "makiwildcards"
     CATEGORY = "utils"
 
-    def makiwildcards(self, wildcards_count, seed, **kwargs):
+    def makiwildcards(self, wildcards_count, seed, text=None, **kwargs):
 
         selected_wildcards = [
             kwargs[f"wildcard_name_{i}"] for i in range(1, wildcards_count + 1)
@@ -62,6 +71,8 @@ class makiwildcards:
             joined_result = ", ".join(results)
             print(f"wildcards:{joined_result} ||| seed:{seed}")
 
+            if text is not None:
+                joined_result = f"{text},{joined_result}"
             return (joined_result,)
 
 
