@@ -1,0 +1,5 @@
+﻿missing arms
+bad hands
+bad anatomy
+extra digit
+fewer digits

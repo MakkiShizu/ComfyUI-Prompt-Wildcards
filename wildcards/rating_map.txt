@@ -1,0 +1,4 @@
+safe
+sensitive
+nsfw
+explicit, nsfw
