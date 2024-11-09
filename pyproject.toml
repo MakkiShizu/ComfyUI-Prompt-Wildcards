@@ -1,0 +1,14 @@
+[project]
+name = "ComfyUI-Prompt-Wildcards"
+description = "Optional wildcards in ComfyUI"
+version = "1.0.0"
+license = {file = "LICENSE"}
+
+[project.urls]
+Repository = "https://github.com/MakkiShizu/ComfyUI-Prompt-Wildcards"
+#  Used by Comfy Registry https://comfyregistry.org
+
+[tool.comfy]
+PublisherId = "makki-shizu"
+DisplayName = "ComfyUI-Prompt-Wildcards"
+Icon = ""
