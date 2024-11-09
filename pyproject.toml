@@ -10,5 +10,5 @@ Repository = "https://github.com/MakkiShizu/ComfyUI-Prompt-Wildcards"
 
 [tool.comfy]
 PublisherId = "makki-shizu"
-DisplayName = "comfyui_prompt_wildcards"
+DisplayName = "ComfyUI-Prompt-Wildcards"
 Icon = ""
