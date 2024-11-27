@@ -20,7 +20,7 @@ class makiwildcards:
             "required": {
                 "wildcards_count": (
                     "INT",
-                    {"default": 1, "min": 1, "max": 10, "step": 1},
+                    {"default": 3, "min": 1, "max": 50, "step": 1},
                 ),
                 "seed": ("INT", {"default": 0, "min": 0, "max": 0xFFFFFFFFFFFFFFFF}),
             },
@@ -35,7 +35,7 @@ class makiwildcards:
             },
         }
 
-        for i in range(1, 10):
+        for i in range(1, 50):
             inputs["required"][f"wildcard_name_{i}"] = (
                 WILDCARDS_LIST,
                 {"default": WILDCARDS_LIST[0]},
