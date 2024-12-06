@@ -39,6 +39,7 @@ function toggleWidget(node, widget, show = false, suffix = "") {
 function handleVisibility(node, countValue, node_type) {
   const baseNamesMap = {
     makiwildcards: ["wildcard_name"],
+    textconcatenate: ["text"],
   };
 
   const baseNames = baseNamesMap[node_type];
@@ -51,6 +52,9 @@ function handleVisibility(node, countValue, node_type) {
       if (node_type === "makiwildcards") {
         toggleWidget(node, nameWidget, true);
       }
+      if (node_type === "textconcatenate") {
+        toggleWidget(node, nameWidget, true);
+      }
     } else {
       toggleWidget(node, nameWidget, false);
     }
@@ -60,6 +64,9 @@ function handleVisibility(node, countValue, node_type) {
 const nodeWidgetHandlers = {
   makiwildcards: {
     wildcards_count: handlewildcards,
+  },
+  textconcatenate: {
+    text_count: handletexts,
   },
 };
 
@@ -73,6 +80,9 @@ function widgetLogic(node, widget) {
 
 function handlewildcards(node, widget) {
   handleVisibility(node, widget.value, "makiwildcards");
+}
+function handletexts(node, widget) {
+  handleVisibility(node, widget.value, "textconcatenate");
 }
 
 app.registerExtension({

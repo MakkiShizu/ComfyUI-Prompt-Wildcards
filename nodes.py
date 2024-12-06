@@ -76,10 +76,66 @@ class makiwildcards:
             return (joined_result,)
 
 
+# textconcatenate is revise from https://github.com/WASasquatch/was-node-suite-comfyui/blob/main/WAS_Node_Suite.py#L10311-L10362 2024/12/07
+class textconcatenate:
+    @classmethod
+    def INPUT_TYPES(s):
+        inputs = {
+            "required": {
+                "text_count": (
+                    "INT",
+                    {"default": 3, "min": 1, "max": 50, "step": 1},
+                ),
+                "delimiter": ("STRING", {"default": ", "}),
+                "clean_whitespace": (["true", "false"],),
+            },
+        }
+
+        for i in range(1, 50):
+            inputs["required"][f"text_{i}"] = (
+                "STRING",
+                {"default": ""},
+            )
+
+        return inputs
+
+    RETURN_TYPES = ("STRING",)
+    FUNCTION = "text_concatenate"
+
+    CATEGORY = "utils"
+
+    def text_concatenate(self, text_count, delimiter, clean_whitespace, **kwargs):
+        text_inputs = []
+        selected_texts = [kwargs[f"text_{i}"] for i in range(1, text_count + 1)]
+
+        for text in selected_texts:
+            if clean_whitespace == "true":
+                # Remove leading and trailing whitespace around this input.
+                text = text.strip()
+
+            # Only use this input if it's a non-empty string, since it
+            # never makes sense to concatenate totally empty inputs.
+            # NOTE: If whitespace cleanup is disabled, inputs containing
+            # 100% whitespace will be treated as if it's a non-empty input.
+            if text != "":
+                text_inputs.append(text)
+
+        # Handle special case where delimiter is "\n" (literal newline).
+        if delimiter in ("\n", "\\n"):
+            delimiter = "\n"
+
+        # Merge the inputs. Will always generate an output, even if empty.
+        merged_text = delimiter.join(text_inputs)
+
+        return (merged_text,)
+
+
 NODE_CLASS_MAPPINGS = {
     "makiwildcards": makiwildcards,
+    "textconcatenate": textconcatenate,
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
     "makiwildcards": "makiwildcards",
+    "textconcatenate": "textconcatenate",
 }
