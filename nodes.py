@@ -87,7 +87,8 @@ class textconcatenate:
                     {"default": 3, "min": 1, "max": 50, "step": 1},
                 ),
                 "delimiter": ("STRING", {"default": ", "}),
-                "clean_whitespace": (["true", "false"],),
+                "clean_whitespace": ("BOOLEAN", {"default": True}),
+                "replace_underscore": ("BOOLEAN", {"default": True}),
             },
         }
 
@@ -104,27 +105,25 @@ class textconcatenate:
 
     CATEGORY = "utils"
 
-    def text_concatenate(self, text_count, delimiter, clean_whitespace, **kwargs):
+    def text_concatenate(
+        self, text_count, delimiter, clean_whitespace, replace_underscore, **kwargs
+    ):
         text_inputs = []
         selected_texts = [kwargs[f"text_{i}"] for i in range(1, text_count + 1)]
 
         for text in selected_texts:
-            if clean_whitespace == "true":
-                # Remove leading and trailing whitespace around this input.
+            if clean_whitespace:
                 text = text.strip()
 
-            # Only use this input if it's a non-empty string, since it
-            # never makes sense to concatenate totally empty inputs.
-            # NOTE: If whitespace cleanup is disabled, inputs containing
-            # 100% whitespace will be treated as if it's a non-empty input.
+            if replace_underscore:
+                text = text.replace("_", " ")
+
             if text != "":
                 text_inputs.append(text)
 
-        # Handle special case where delimiter is "\n" (literal newline).
         if delimiter in ("\n", "\\n"):
             delimiter = "\n"
 
-        # Merge the inputs. Will always generate an output, even if empty.
         merged_text = delimiter.join(text_inputs)
 
         return (merged_text,)
