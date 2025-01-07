@@ -10,16 +10,14 @@ ComfyUI中通过选项使用的Wildcards
 
 类似于[stable-diffusion-webui-wildcards](https://github.com/AUTOMATIC1111/stable-diffusion-webui-wildcards)在ComfyUI中的用处，但不使用 `__name__`。
 
-Wildcards文件夹位置：
+Wildcards文件夹路径：
 
 * 在 ComfyUI 安装的根目录中创建一个名为 “wildcards” 的目录（/ComfyUI/wildcards）
 * 本插件目录下的“wildcards”（/ComfyUI/custom_nodes/ComfyUI-Prompt-Wildcards/wildcards）
 
-![image](./example/ComfyUI-Prompt-Wildcards.png)
-
 # 示例
 
-![image](./example/ComfyUI-Prompt-Wildcards(example).png)
+![image](./example/ComfyUI-Prompt-Wildcards.png)
 
 ## 安装
 
