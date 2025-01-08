@@ -15,6 +15,21 @@ Wildcards文件夹路径：
 * 在 ComfyUI 安装的根目录中创建一个名为 “wildcards” 的目录（/ComfyUI/wildcards）
 * 本插件目录下的“wildcards”（/ComfyUI/custom_nodes/ComfyUI-Prompt-Wildcards/wildcards）
 
+节点参数解释：
+
+* makiwildcards:
+  * wildcards_count:选择使用的wildcard数量
+  * randoms:是否保持种子随机，调整为false时按照种子的数值选择行数，true是为了复刻原先内容（2025/1/8前未添加该参数），即随机行
+  * seed:随机种子，根据 `randoms`的模式选择txt文件中的某行
+  * wildcard_name_{n}:选择wildcard文件
+  * text:这里的内容将会添加到wildcards前面并以英文逗号相隔
+* textconcatenate
+  * text_count:选择使用的text数量
+  * delimiter:间隔符
+  * clean_whitespace:移除两端空白字符
+  * replace_underscors:将下划线替换为空格
+  * text_{n}:文本内容
+
 # 示例
 
 ![image](./example/ComfyUI-Prompt-Wildcards.png)
