@@ -34,6 +34,7 @@ class makiwildcards:
                     "INT",
                     {"default": 3, "min": 1, "max": 50, "step": 1},
                 ),
+                "randoms": ("BOOLEAN", {"default": True}),
                 "seed": ("INT", {"default": 0, "min": 0, "max": 0xFFFFFFFFFFFFFFFF}),
             },
             "optional": {
@@ -60,7 +61,7 @@ class makiwildcards:
     FUNCTION = "makiwildcards"
     CATEGORY = "utils"
 
-    def makiwildcards(self, wildcards_count, seed, text=None, **kwargs):
+    def makiwildcards(self, wildcards_count, randoms, seed, text=None, **kwargs):
 
         selected_wildcards = [
             kwargs[f"wildcard_name_{i}"] for i in range(1, wildcards_count + 1)
@@ -87,9 +88,17 @@ class makiwildcards:
                                 with open(wildcard_file, "r", encoding="utf-8") as f:
                                     lines = f.readlines()
                                     if lines:
-                                        random.seed(seed)
-                                        random_line = random.choice(lines).strip()
-                                        results.append(random_line)
+                                        if randoms:
+                                            random.seed(seed)
+                                            random_line = random.choice(lines).strip()
+                                            results.append(random_line)
+                                        else:
+                                            selected_line_index = seed - 1
+                                            selected_line_index %= len(lines)
+                                            selected_line = lines[
+                                                selected_line_index
+                                            ].strip()
+                                            results.append(selected_line)
                             else:
                                 print(f"Wildcard File not found: {wildcard_file}")
 
