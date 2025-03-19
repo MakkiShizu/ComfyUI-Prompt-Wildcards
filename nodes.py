@@ -70,7 +70,7 @@ class makiwildcards:
 
         for full_dir in full_dirs:
             for root, dirs, files in os.walk(full_dir):
-                for wildcard in selected_wildcards:
+                for index, wildcard in enumerate(selected_wildcards):
                     if wildcard == "None":
                         continue
                     else:
@@ -89,7 +89,7 @@ class makiwildcards:
                                     lines = f.readlines()
                                     if lines:
                                         if randoms:
-                                            random.seed(seed)
+                                            random.seed(seed + index)
                                             random_line = random.choice(lines).strip()
                                             results.append(random_line)
                                         else:
@@ -110,6 +110,46 @@ class makiwildcards:
                 else:
                     joined_result = f"{text},{joined_result}"
                 return (joined_result,)
+
+
+class makitextwildcards:
+    @classmethod
+    def INPUT_TYPES(s):
+        inputs = {
+            "required": {
+                "randoms": ("BOOLEAN", {"default": True}),
+                "seed": ("INT", {"default": 0, "min": 0, "max": 0xFFFFFFFFFFFFFFFF}),
+            },
+            "optional": {
+                "text": (
+                    "STRING",
+                    {
+                        "default": "",
+                        "multiline": True,
+                    },
+                ),
+            },
+        }
+
+        return inputs
+
+    RETURN_TYPES = ("STRING",)
+    RETURN_NAMES = ("text",)
+    FUNCTION = "makitextwildcards"
+    CATEGORY = "utils"
+
+    def makitextwildcards(self, randoms, seed, text):
+        lines = text.splitlines()
+        if not lines:
+            return ("",)
+
+        if randoms:
+            random.seed(seed)
+            selected_line = random.choice(lines).strip()
+        else:
+            selected_line_index = (seed - 1) % len(lines)
+            selected_line = lines[selected_line_index].strip()
+        return (selected_line,)
 
 
 # textconcatenate is revise from https://github.com/WASasquatch/was-node-suite-comfyui/blob/main/WAS_Node_Suite.py#L10311-L10362 2024/12/07
@@ -137,6 +177,7 @@ class textconcatenate:
         return inputs
 
     RETURN_TYPES = ("STRING",)
+    RETURN_NAMES = ("text",)
     FUNCTION = "text_concatenate"
 
     CATEGORY = "utils"
@@ -167,10 +208,12 @@ class textconcatenate:
 
 NODE_CLASS_MAPPINGS = {
     "makiwildcards": makiwildcards,
+    "makitextwildcards": makitextwildcards,
     "textconcatenate": textconcatenate,
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
     "makiwildcards": "makiwildcards",
+    "makitextwildcards": "makitextwildcards",
     "textconcatenate": "textconcatenate",
 }

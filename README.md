@@ -10,6 +10,8 @@ Using prompt wildcards through selection.
 
 Similar to the role of [stable-diffusion-webui-wildcards](https://github.com/AUTOMATIC1111/stable-diffusion-webui-wildcards) in ComfyUI, but not used `__name__` .
 
+**2025/03/20**: To ensure that under the same seed value, each distinct count retrieves different content even when using the same file, the randomization method for randoms was revised. Future implementations leveraging the same seed will now produce outputs divergent from those prior to this update (March 20, 2025).
+
 Wildcards folder PATH:
 
 * Create a directory in the root of your ComfyUI install called "wildcards" (ComfyUI/wildcards)
@@ -23,6 +25,10 @@ Nodes Parameter Explanation:
   * **seed** : Random seed, used to select a row from the txt file based on the `randoms` mode.
   * **wildcard_name_{n}** : Select wildcard files.
   * **text** : The content here will be added before the wildcards, separated by commas.
+* **makitextwildcards**:
+  * The syntax of `randoms` and `seed` in this system mirrors their usage in `makiwildcards`. Here:
+    - The `text` parameter specifies the textual content requiring randomization.
+    - A specific line from the text is selected for output based on the combined values of `randoms` and `seed`, functioning identically to how wildcard systems parse and utilize line-based data from .txt files (e.g., similar to traditional wildcards).
 * **textconcatenate** :
   * **text_count** : Select the number of texts to use.
   * **delimiter** : Separator.
@@ -32,7 +38,7 @@ Nodes Parameter Explanation:
 
 # Example
 
-![image](./example/ComfyUI-Prompt-Wildcards.png)
+![image](./example_workflows/ComfyUI-Prompt-Wildcards.png)
 
 ## Installation
 
