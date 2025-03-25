@@ -56,8 +56,14 @@ class makiwildcards:
 
         return inputs
 
-    RETURN_TYPES = ("STRING",)
-    RETURN_NAMES = ("text",)
+    RETURN_TYPES = (
+        "STRING",
+        "STRING",
+    )
+    RETURN_NAMES = (
+        "text",
+        "file contents",
+    )
     FUNCTION = "makiwildcards"
     CATEGORY = "utils"
 
@@ -67,6 +73,7 @@ class makiwildcards:
             kwargs[f"wildcard_name_{i}"] for i in range(1, wildcards_count + 1)
         ]
         results = []
+        file_contents = []
 
         for full_dir in full_dirs:
             for root, dirs, files in os.walk(full_dir):
@@ -74,6 +81,7 @@ class makiwildcards:
                     if wildcard == "None":
                         continue
                     else:
+                        target_dir = None
                         if wildcard.startswith("custom_nodes | "):
                             wildcard_filename = wildcard[len("custom_nodes | ") :]
                             target_dir = wildcards_dir
@@ -86,8 +94,14 @@ class makiwildcards:
                             )
                             if wildcard_file.is_file():
                                 with open(wildcard_file, "r", encoding="utf-8") as f:
-                                    lines = f.readlines()
+                                    raw_content = f.read()
+                                    lines = raw_content.splitlines()
                                     if lines:
+                                        file_entry = (
+                                            f"File: {wildcard_filename}\n"
+                                            f"Content:\n{raw_content}\n-----\n"
+                                        )
+                                        file_contents.append(file_entry)
                                         if randoms:
                                             random.seed(seed + index)
                                             random_line = random.choice(lines).strip()
@@ -109,7 +123,7 @@ class makiwildcards:
                     joined_result = f"{joined_result}"
                 else:
                     joined_result = f"{text},{joined_result}"
-                return (joined_result,)
+                return (joined_result, file_contents)
 
 
 class makitextwildcards:
