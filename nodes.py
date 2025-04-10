@@ -3,12 +3,13 @@ import random
 
 from pathlib import Path
 import folder_paths
+from .logging import logger
 
 wildcards_dir = Path(__file__).parent / "wildcards"
 os.makedirs(wildcards_dir, exist_ok=True)
 wildcards_dirr = Path(folder_paths.base_path) / "wildcards"
 # os.makedirs(wildcards_dirr, exist_ok=True)
-print(f"Using wildcards dir:☯️{wildcards_dir} と {wildcards_dirr}☯️")
+logger.info(f"Using wildcards dir:☯️{wildcards_dir} と {wildcards_dirr}☯️")
 
 full_dirs = [wildcards_dir, wildcards_dirr]
 
@@ -114,10 +115,12 @@ class makiwildcards:
                                             ].strip()
                                             results.append(selected_line)
                             else:
-                                print(f"Wildcard File not found: {wildcard_file}")
+                                logger.warning(
+                                    f"Wildcard File not found: {wildcard_file}"
+                                )
 
                 joined_result = ", ".join(results)
-                print(f"wildcards:{joined_result} ||| seed:{seed}")
+                logger.info(f"wildcards:{joined_result} ||| seed:{seed}")
 
                 if text == "":
                     joined_result = f"{joined_result}"
