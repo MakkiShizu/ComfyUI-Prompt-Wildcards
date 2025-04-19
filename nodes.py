@@ -223,14 +223,57 @@ class textconcatenate:
         return (merged_text,)
 
 
+class textconcatenate_v2:
+    @classmethod
+    def INPUT_TYPES(s):
+        return {
+            "required": {
+                "delimiter": ("STRING", {"default": ", "}),
+                "clean_whitespace": ("BOOLEAN", {"default": True}),
+                "replace_underscore": ("BOOLEAN", {"default": True}),
+            }
+        }
+
+    RETURN_TYPES = ("STRING",)
+    RETURN_NAMES = ("text",)
+    FUNCTION = "text_concatenate_v2"
+
+    CATEGORY = "utils"
+
+    def text_concatenate_v2(
+        self, delimiter, clean_whitespace, replace_underscore, **kwargs
+    ):
+        text_inputs = []
+        text = ""
+
+        for key, text in kwargs.items():
+            if clean_whitespace:
+                text = text.strip()
+
+            if replace_underscore:
+                text = text.replace("_", " ")
+
+            if text != "":
+                text_inputs.append(text)
+
+        if delimiter in ("\n", "\\n"):
+            delimiter = "\n"
+
+        merged_text = delimiter.join(text_inputs)
+
+        return (merged_text,)
+
+
 NODE_CLASS_MAPPINGS = {
     "makiwildcards": makiwildcards,
     "makitextwildcards": makitextwildcards,
     "textconcatenate": textconcatenate,
+    "textconcatenate_v2": textconcatenate_v2,
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
     "makiwildcards": "makiwildcards",
     "makitextwildcards": "makitextwildcards",
     "textconcatenate": "textconcatenate",
+    "textconcatenate_v2": "textconcatenate_v2",
 }

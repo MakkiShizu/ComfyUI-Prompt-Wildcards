@@ -10,6 +10,9 @@ Using prompt wildcards through selection.
 
 Similar to the role of [stable-diffusion-webui-wildcards](https://github.com/AUTOMATIC1111/stable-diffusion-webui-wildcards) in ComfyUI, but not used `__name__` .
 
+![image](./example_workflows/ComfyUI-Prompt-Wildcards1.jpg)
+![image](./example_workflows/ComfyUI-Prompt-Wildcards2.jpg)
+
 **2025/03/20**: To ensure that under the same seed value, each distinct count retrieves different content even when using the same file, the randomization method for randoms was revised. Future implementations leveraging the same seed will now produce outputs divergent from those prior to this update (March 20, 2025).
 
 Wildcards folder PATH:
@@ -35,10 +38,6 @@ Nodes Parameter Explanation:
   * **clean_whitespace** : Remove leading and trailing whitespace.
   * **replace_underscores** : Replace underscores with spaces.
   * **text_{n}** : Text content.
-
-# Example
-
-![image](./example_workflows/ComfyUI-Prompt-Wildcards.png)
 
 ## Installation
 

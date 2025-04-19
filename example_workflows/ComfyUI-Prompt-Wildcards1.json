@@ -1,0 +1,341 @@
+{
+  "id": "55b6130b-3f83-40a6-b10d-ea5a434aa3eb",
+  "revision": 0,
+  "last_node_id": 25,
+  "last_link_id": 33,
+  "nodes": [
+    {
+      "id": 19,
+      "type": "ShowText|pysssss",
+      "pos": [
+        -1400,
+        -5170
+      ],
+      "size": [
+        315,
+        100
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "text",
+          "name": "text",
+          "type": "STRING",
+          "widget": {
+            "name": "text"
+          },
+          "link": 31
+        }
+      ],
+      "outputs": [
+        {
+          "label": "STRING",
+          "name": "STRING",
+          "shape": 6,
+          "type": "STRING",
+          "links": []
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-custom-scripts",
+        "ver": "943e5cc7526c601600150867a80a02ab008415e7",
+        "Node name for S&R": "ShowText|pysssss"
+      },
+      "widgets_values": [
+        "",
+        "hello,safe, diffraction spikes, lens flare abuse"
+      ],
+      "color": "#323",
+      "bgcolor": "#535",
+      "shape": 1
+    },
+    {
+      "id": 20,
+      "type": "ShowText|pysssss",
+      "pos": [
+        -1400,
+        -4670
+      ],
+      "size": [
+        315,
+        100
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "text",
+          "name": "text",
+          "type": "STRING",
+          "widget": {
+            "name": "text"
+          },
+          "link": 33
+        }
+      ],
+      "outputs": [
+        {
+          "label": "STRING",
+          "name": "STRING",
+          "shape": 6,
+          "type": "STRING",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-custom-scripts",
+        "ver": "943e5cc7526c601600150867a80a02ab008415e7",
+        "Node name for S&R": "ShowText|pysssss"
+      },
+      "widgets_values": [
+        "",
+        "ciallo"
+      ],
+      "color": "#323",
+      "bgcolor": "#535",
+      "shape": 1
+    },
+    {
+      "id": 23,
+      "type": "ShowText|pysssss",
+      "pos": [
+        -1400,
+        -4970
+      ],
+      "size": [
+        315,
+        200
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "text",
+          "name": "text",
+          "type": "STRING",
+          "widget": {
+            "name": "text"
+          },
+          "link": 32
+        }
+      ],
+      "outputs": [
+        {
+          "label": "STRING",
+          "name": "STRING",
+          "shape": 6,
+          "type": "STRING",
+          "links": [
+            29
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-custom-scripts",
+        "ver": "943e5cc7526c601600150867a80a02ab008415e7",
+        "Node name for S&R": "ShowText|pysssss"
+      },
+      "widgets_values": [
+        "",
+        "File: rating_map\nContent:\nsafe\nsensitive\nnsfw\nexplicit, nsfw\n-----\n",
+        "File: 构图-效果\nContent:\n﻿motion lines\nmotion blur\ncinematic lighting\nforeshortening\nchromatic aberration\noptical illusion\nmultiple monochrome\nchiaroscuro\nemphasis lines\nchromatic aberration abuse\njpeg artifacts\nspeed lines\nhalftone\nbokeh\nbacklighting\nlens flare abuse\nanaglyph\ngod rays\noverexposure\nsparkle\nstereogram\nglowing light\nscanlines\nray tracing\ndithering\nblurry\nbloom\nimage fill\nreflection light\nsilhouette\nblending\ncaustics\nlens flare\ndiffraction spikes\ndrop shadow\nfilm grain\nvignetting\ndepth of field\n\n-----\n",
+        "File: 构图-效果\nContent:\n﻿motion lines\nmotion blur\ncinematic lighting\nforeshortening\nchromatic aberration\noptical illusion\nmultiple monochrome\nchiaroscuro\nemphasis lines\nchromatic aberration abuse\njpeg artifacts\nspeed lines\nhalftone\nbokeh\nbacklighting\nlens flare abuse\nanaglyph\ngod rays\noverexposure\nsparkle\nstereogram\nglowing light\nscanlines\nray tracing\ndithering\nblurry\nbloom\nimage fill\nreflection light\nsilhouette\nblending\ncaustics\nlens flare\ndiffraction spikes\ndrop shadow\nfilm grain\nvignetting\ndepth of field\n\n-----\n"
+      ],
+      "color": "#323",
+      "bgcolor": "#535",
+      "shape": 1
+    },
+    {
+      "id": 24,
+      "type": "makiwildcards",
+      "pos": [
+        -1900,
+        -5170
+      ],
+      "size": [
+        400,
+        276
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "label": "text",
+          "name": "text",
+          "type": "STRING",
+          "links": [
+            31
+          ]
+        },
+        {
+          "label": "file contents",
+          "name": "file contents",
+          "type": "STRING",
+          "links": [
+            32
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui_prompt_wildcards",
+        "ver": "518864514ed2068893149c1aa3607540f658d345",
+        "Node name for S&R": "makiwildcards"
+      },
+      "widgets_values": [
+        3,
+        true,
+        9733169221161,
+        "randomize",
+        "custom_nodes | rating_map",
+        "custom_nodes | 构图-效果",
+        "custom_nodes | 构图-效果",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "hello"
+      ],
+      "color": "#323",
+      "bgcolor": "#535",
+      "shape": 1
+    },
+    {
+      "id": 25,
+      "type": "makitextwildcards",
+      "pos": [
+        -1900,
+        -4770
+      ],
+      "size": [
+        400,
+        200
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "label": "text",
+          "name": "text",
+          "type": "STRING",
+          "links": [
+            33
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui_prompt_wildcards",
+        "ver": "518864514ed2068893149c1aa3607540f658d345",
+        "Node name for S&R": "makitextwildcards"
+      },
+      "widgets_values": [
+        false,
+        2,
+        "fixed",
+        "hello\nciallo\nabcde"
+      ],
+      "color": "#323",
+      "bgcolor": "#535",
+      "shape": 1
+    }
+  ],
+  "links": [
+    [
+      29,
+      23,
+      0,
+      18,
+      0,
+      "STRING"
+    ],
+    [
+      31,
+      24,
+      0,
+      19,
+      0,
+      "STRING"
+    ],
+    [
+      32,
+      24,
+      1,
+      23,
+      0,
+      "STRING"
+    ],
+    [
+      33,
+      25,
+      0,
+      20,
+      0,
+      "STRING"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.9957692307692304,
+      "offset": [
+        2322.0094631131706,
+        5325.363074546158
+      ]
+    },
+    "VHS_latentpreview": false,
+    "VHS_latentpreviewrate": 0,
+    "VHS_MetadataImage": true,
+    "VHS_KeepIntermediate": true
+  },
+  "version": 0.4
+}

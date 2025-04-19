@@ -10,6 +10,9 @@ ComfyUI中通过选项使用的Wildcards
 
 类似于[stable-diffusion-webui-wildcards](https://github.com/AUTOMATIC1111/stable-diffusion-webui-wildcards)在ComfyUI中的用处，但不使用 `__name__`。
 
+![image](./example_workflows/ComfyUI-Prompt-Wildcards1.jpg)
+![image](./example_workflows/ComfyUI-Prompt-Wildcards2.jpg)
+
 2025/03/20: 为了保证同种子下每个不同count即使使用同一文件也调取不同内容，修改了randoms的随机方式，未来复刻时同种子将与 `2025/03/20`前的内容不同。
 
 Wildcards文件夹路径：
@@ -33,10 +36,6 @@ Wildcards文件夹路径：
   * clean_whitespace:移除两端空白字符
   * replace_underscors:将下划线替换为空格
   * text_{n}:文本内容
-
-# 示例
-
-![image](./example_workflows/ComfyUI-Prompt-Wildcards.png)
 
 ## 安装
 
