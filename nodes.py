@@ -66,7 +66,7 @@ class makiwildcards:
         "file contents",
     )
     FUNCTION = "makiwildcards"
-    CATEGORY = "utils"
+    CATEGORY = "utils/Prompt-Wildcards"
 
     def makiwildcards(self, wildcards_count, randoms, seed, text=None, **kwargs):
 
@@ -153,7 +153,7 @@ class makitextwildcards:
     RETURN_TYPES = ("STRING",)
     RETURN_NAMES = ("text",)
     FUNCTION = "makitextwildcards"
-    CATEGORY = "utils"
+    CATEGORY = "utils/Prompt-Wildcards"
 
     def makitextwildcards(self, randoms, seed, text):
         lines = text.splitlines()
@@ -197,7 +197,7 @@ class textconcatenate:
     RETURN_NAMES = ("text",)
     FUNCTION = "text_concatenate"
 
-    CATEGORY = "utils"
+    CATEGORY = "utils/Prompt-Wildcards"
 
     def text_concatenate(
         self, text_count, delimiter, clean_whitespace, replace_underscore, **kwargs
@@ -238,7 +238,7 @@ class textconcatenate_v2:
     RETURN_NAMES = ("text",)
     FUNCTION = "text_concatenate_v2"
 
-    CATEGORY = "utils"
+    CATEGORY = "utils/Prompt-Wildcards"
 
     def text_concatenate_v2(
         self, delimiter, clean_whitespace, replace_underscore, **kwargs

@@ -49,9 +49,10 @@ git clone https://github.com/MakkiShizu/ComfyUI-Prompt-Wildcards.git
 
 node name：
 
-- utils/makiwildcards
-- utils/makitextwildcards
-- utils/textconcatenate
+- utils/Prompt-Wildcards/makiwildcards
+- utils/Prompt-Wildcards/makitextwildcards
+- utils/Prompt-Wildcards/textconcatenate
+- utils/Prompt-Wildcards/textconcatenate_v2
 
 ### License
 

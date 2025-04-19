@@ -47,9 +47,10 @@ git clone https://github.com/MakkiShizu/ComfyUI-Prompt-Wildcards.git
 
 节点名称：
 
-- utils/makiwildcards
-- utils/makitextwildcards
-- utils/textconcatenate
+- utils/Prompt-Wildcards/makiwildcards
+- utils/Prompt-Wildcards/makitextwildcards
+- utils/Prompt-Wildcards/textconcatenate
+- utils/Prompt-Wildcards/textconcatenate_v2
 
 ### 许可证
 
