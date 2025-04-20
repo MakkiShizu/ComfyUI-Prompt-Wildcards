@@ -1,18 +1,4 @@
 // revise from https://github.com/TFL-TFL/ComfyUI_Text_Translation/blob/main/js/ulits.js
-export const isPropertiesWidgetShow = (widget_name) => {
-  if (properties_widget[widget_name]) {
-    return properties_widget[widget.name].value.includes("_hide");
-  } else {
-    return false;
-  }
-};
-
-export const doesInputWithNameExist = (node, name) =>
-  node.inputs ? node.inputs.some((input) => input.name === name) : false;
-
-export function updateNodeHeight(node) {
-  node.setSize([node.size[0], node.computeSize()[1]]);
-}
 
 export const dynamic_connection = (
   node,
@@ -23,7 +9,7 @@ export const dynamic_connection = (
 ) => {
   if (!connected && node.inputs.length > 1) {
     const stackTrace = new Error().stack;
-    for (let i = 0; i < node.inputs.length - 1; i++) {
+    for (let i = node.inputs.length - 2; i >= 0; i--) {
       if (
         !stackTrace.includes("LGraphNode.prototype.connect") &&
         !stackTrace.includes("LGraphNode.connect") &&
@@ -42,7 +28,7 @@ export const dynamic_connection = (
 
   if (connected && node.inputs.length > 1) {
     const stackTrace = new Error().stack;
-    for (let i = 0; i < node.inputs.length - 1; i++) {
+    for (let i = node.inputs.length - 2; i >= 0; i--) {
       if (
         !stackTrace.includes("LGraphNode.prototype.connect") &&
         !stackTrace.includes("LGraphNode.connect") &&

@@ -37,7 +37,16 @@ function text_concatenate_widget(nodeType, nodeData, app) {
       ? onConnectionsChange.apply(this, arguments)
       : undefined;
 
-    dynamic_connection(this, index, connected, input_name, this.inputs[0].type);
+    const connectionType =
+      this.inputs.length > 0 ? this.inputs[0].type : "STRING";
+    dynamic_connection(
+      this,
+      index,
+      connected,
+      input_name,
+      this.inputs[0].type,
+      connectionType
+    );
     return occ;
   };
 }
