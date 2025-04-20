@@ -1,6 +1,6 @@
 // revise from https://github.com/TFL-TFL/ComfyUI_Text_Translation/blob/main/js/text.js
 import { app } from "../../scripts/app.js";
-import { dynamic_connection } from "./ulits.js";
+import { dynamic_connection } from "./utils.js";
 
 app.registerExtension({
   name: "textconcatenate_v2.text",
