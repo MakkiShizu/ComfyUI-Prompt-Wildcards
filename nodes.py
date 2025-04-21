@@ -118,25 +118,29 @@ class makiwildcards:
                                         file_contents.append(file_entry)
                                         if randoms:
                                             random.seed(seed + index)
-                                            random_line = random.choice(lines).strip()
+                                            random_line = random.choice(lines)
+                                            if clean_whitespace:
+                                                random_line = random_line.strip()
+                                            if replace_underscore:
+                                                random_line = random_line.replace(
+                                                    "_", " "
+                                                )
                                             results.append(random_line)
                                         else:
                                             selected_line_index = seed - 1
                                             selected_line_index %= len(lines)
-                                            selected_line = lines[
-                                                selected_line_index
-                                            ].strip()
+                                            selected_line = lines[selected_line_index]
+                                            if clean_whitespace:
+                                                selected_line = selected_line.strip()
+                                            if replace_underscore:
+                                                selected_line = selected_line.replace(
+                                                    "_", " "
+                                                )
                                             results.append(selected_line)
                             else:
                                 logger.warning(
                                     f"Wildcard File not found: {wildcard_file}"
                                 )
-
-                if clean_whitespace:
-                    results = results.strip()
-
-                if replace_underscore:
-                    results = results.replace("_", " ")
 
                 if delimiter in ("\n", "\\n"):
                     delimiter = "\n"
