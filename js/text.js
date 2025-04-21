@@ -18,6 +18,25 @@ app.registerExtension({
 function text_concatenate_widget(nodeType, nodeData, app) {
   const input_name = "text";
 
+  const originalSerialize = nodeType.prototype.serialize;
+  nodeType.prototype.serialize = function () {
+    const data = originalSerialize?.call(this) || {};
+    data._dynamicInputs = Array.from(this._dynamicInputs || []);
+    return data;
+  };
+
+  const originalConfigure = nodeType.prototype.onConfigure;
+  nodeType.prototype.onConfigure = function (data) {
+    this._isRestoring = true;
+    this._dynamicInputs = new Set(data?._dynamicInputs || []);
+    const result = originalConfigure?.call(this, data);
+
+    dynamic_connection(this, -1, false, input_name, "STRING");
+
+    this._isRestoring = false;
+    return result;
+  };
+
   const onNodeCreated = nodeType.prototype.onNodeCreated;
   nodeType.prototype.onNodeCreated = function () {
     const res = onNodeCreated?.apply(this, arguments);
