@@ -5,45 +5,31 @@ export const dynamic_connection = (
   index,
   connected,
   connectionPrefix = "input_",
-  connectionType = "PSDLAYER"
+  connectionType = "STRING"
 ) => {
-  if (!connected && node.inputs.length > 1) {
-    const stackTrace = new Error().stack;
+  const removeUnusedInputs = () => {
     for (let i = node.inputs.length - 2; i >= 0; i--) {
-      if (
-        !stackTrace.includes("LGraphNode.prototype.connect") &&
-        !stackTrace.includes("LGraphNode.connect") &&
-        !stackTrace.includes("loadGraphData") &&
-        !node.inputs[i].link
-      ) {
+      const input = node.inputs[i];
+      if (!input.link && !input.__keepOnLoad) {
         node.removeInput(i);
       }
     }
+  };
+
+  removeUnusedInputs();
+
+  const lastInput = node.inputs[node.inputs.length - 1];
+  if (lastInput?.link) {
+    const newIndex = node.inputs.length;
+    const newInput = node.addInput(
+      `${connectionPrefix}${newIndex}`,
+      connectionType
+    );
+    newInput.__keepOnLoad = true;
   }
 
-  let last_slot = node.inputs[node.inputs.length - 1];
-  if (last_slot.link != undefined) {
-    node.addInput(`${connectionPrefix}`, connectionType);
-  }
-
-  if (connected && node.inputs.length > 1) {
-    const stackTrace = new Error().stack;
-    for (let i = node.inputs.length - 2; i >= 0; i--) {
-      if (
-        !stackTrace.includes("LGraphNode.prototype.connect") &&
-        !stackTrace.includes("LGraphNode.connect") &&
-        !stackTrace.includes("loadGraphData") &&
-        !node.inputs[i].link
-      ) {
-        node.removeInput(i);
-      }
-    }
-  }
-
-  if (node.inputs.length > 1) {
-    for (let i = 0; i < node.inputs.length - 1; i++) {
-      node.inputs[i].name = `${connectionPrefix}${i + 1}`;
-      node.inputs[i].label = `${connectionPrefix}${i + 1}`;
-    }
-  }
+  node.inputs.forEach((input, i) => {
+    input.name = `${connectionPrefix}${i + 1}`;
+    input.label = input.name;
+  });
 };
