@@ -7,11 +7,11 @@ from .logging import logger
 
 wildcards_dir = Path(__file__).parent / "wildcards"
 os.makedirs(wildcards_dir, exist_ok=True)
-wildcards_dirr = Path(folder_paths.base_path) / "wildcards"
-# os.makedirs(wildcards_dirr, exist_ok=True)
-logger.info(f"Using wildcards dir:☯️{wildcards_dir} と {wildcards_dirr}☯️")
+wildcards_base_dir = Path(folder_paths.base_path) / "wildcards"
+# os.makedirs(wildcards_base_dir, exist_ok=True)
+logger.info(f"Using wildcards dir:☯️{wildcards_dir} と {wildcards_base_dir}☯️")
 
-full_dirs = [wildcards_dir, wildcards_dirr]
+full_dirs = [wildcards_dir, wildcards_base_dir]
 
 WILDCARDS_LIST = (
     ["None"]
@@ -20,8 +20,8 @@ WILDCARDS_LIST = (
         for wildcard in wildcards_dir.rglob("*.txt")
     ]
     + [
-        "base_path | " + str(wildcard.relative_to(wildcards_dirr))[:-4]
-        for wildcard in wildcards_dirr.rglob("*.txt")
+        "base_path | " + str(wildcard.relative_to(wildcards_base_dir))[:-4]
+        for wildcard in wildcards_base_dir.rglob("*.txt")
     ]
 )
 
@@ -35,6 +35,9 @@ class makiwildcards:
                     "INT",
                     {"default": 3, "min": 1, "max": 50, "step": 1},
                 ),
+                "delimiter": ("STRING", {"default": ", "}),
+                "clean_whitespace": ("BOOLEAN", {"default": True}),
+                "replace_underscore": ("BOOLEAN", {"default": True}),
                 "randoms": ("BOOLEAN", {"default": True}),
                 "seed": ("INT", {"default": 0, "min": 0, "max": 0xFFFFFFFFFFFFFFFF}),
             },
@@ -68,7 +71,17 @@ class makiwildcards:
     FUNCTION = "makiwildcards"
     CATEGORY = "utils/Prompt-Wildcards"
 
-    def makiwildcards(self, wildcards_count, randoms, seed, text=None, **kwargs):
+    def makiwildcards(
+        self,
+        wildcards_count,
+        delimiter,
+        clean_whitespace,
+        replace_underscore,
+        randoms,
+        seed,
+        text=None,
+        **kwargs,
+    ):
 
         selected_wildcards = [
             kwargs[f"wildcard_name_{i}"] for i in range(1, wildcards_count + 1)
@@ -88,7 +101,7 @@ class makiwildcards:
                             target_dir = wildcards_dir
                         if wildcard.startswith("base_path | "):
                             wildcard_filename = wildcard[len("base_path | ") :]
-                            target_dir = wildcards_dirr
+                            target_dir = wildcards_base_dir
                         if target_dir:
                             wildcard_file = (
                                 Path(target_dir) / f"{wildcard_filename}.txt"
@@ -119,13 +132,22 @@ class makiwildcards:
                                     f"Wildcard File not found: {wildcard_file}"
                                 )
 
-                joined_result = ", ".join(results)
+                if clean_whitespace:
+                    results = results.strip()
+
+                if replace_underscore:
+                    results = results.replace("_", " ")
+
+                if delimiter in ("\n", "\\n"):
+                    delimiter = "\n"
+
+                joined_result = delimiter.join(results)
                 logger.info(f"wildcards:{joined_result} ||| seed:{seed}")
 
                 if text == "":
                     joined_result = f"{joined_result}"
                 else:
-                    joined_result = f"{text},{joined_result}"
+                    joined_result = f"{text}{delimiter}{joined_result}"
                 return (joined_result, file_contents)
 
 
