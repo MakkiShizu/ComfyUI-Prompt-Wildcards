@@ -1,4 +1,5 @@
 // revise from https://github.com/jags111/efficiency-nodes-comfyui/blob/main/js/widgethider.js
+
 import { app } from "../../scripts/app.js";
 
 let origProps = {};
@@ -8,7 +9,7 @@ const findWidgetByName = (node, name) => {
 };
 
 const doesInputWithNameExist = (node, name) => {
-  return node.inputs ? node.inputs.some((input) => input.name === name) : false;
+  return false;
 };
 
 const HIDDEN_TAG = "tschide";
