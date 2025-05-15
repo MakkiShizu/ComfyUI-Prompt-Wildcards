@@ -1,0 +1,11 @@
+colors:
+  - red
+  - blue
+  - green
+categories:
+  animals:
+    - cat
+    - dog
+  animals2:
+    - lion
+    - tiger

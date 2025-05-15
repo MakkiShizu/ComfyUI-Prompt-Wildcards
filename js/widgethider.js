@@ -89,7 +89,9 @@ function handletexts(node, widget) {
 app.registerExtension({
   name: "wildcards.widgethider",
   nodeCreated(node) {
+    if (!nodeWidgetHandlers[node.comfyClass]) return;
     for (const w of node.widgets || []) {
+      if (!nodeWidgetHandlers[node.comfyClass][w.name]) continue;
       let widgetValue = w.value;
       let originalDescriptor = Object.getOwnPropertyDescriptor(w, "value");
       if (!originalDescriptor) {
