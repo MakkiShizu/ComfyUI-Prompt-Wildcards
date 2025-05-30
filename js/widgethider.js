@@ -87,7 +87,7 @@ function handletexts(node, widget) {
 }
 
 app.registerExtension({
-  name: "wildcards.widgethider",
+  name: "ComfyUI-Prompt-Wildcards.wildcards.widgethider",
   nodeCreated(node) {
     if (!nodeWidgetHandlers[node.comfyClass]) return;
     for (const w of node.widgets || []) {

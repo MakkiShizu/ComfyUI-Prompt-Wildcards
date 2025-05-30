@@ -4,7 +4,7 @@ import { app } from "../../scripts/app.js";
 import { dynamic_connection } from "./utils.js";
 
 app.registerExtension({
-  name: "textconcatenate_v2.text",
+  name: "ComfyUI-Prompt-Wildcards.textconcatenate_v2.text",
 
   async beforeRegisterNodeDef(nodeType, nodeData, app) {
     switch (nodeData.name) {
