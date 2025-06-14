@@ -118,7 +118,7 @@ class makiwildcards:
                     "STRING",
                     {
                         "default": "",
-                        "multiline": True,
+                        # "multiline": True,
                     },
                 ),
             },
