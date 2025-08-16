@@ -17,27 +17,27 @@ Similar to the role of [stable-diffusion-webui-wildcards](https://github.com/AUT
 
 Wildcards folder PATH:
 
-* Create a directory in the root of your ComfyUI install called "wildcards" (ComfyUI/wildcards)
-* The "wildcards"  in the directory of this plugin (/ComfyUI/custom_nodes/ComfyUI Prompt Wildcards/wildcards)
+- Create a directory in the root of your ComfyUI install called "wildcards" (ComfyUI/wildcards)
+- The "wildcards" in the directory of this plugin (/ComfyUI/custom_nodes/ComfyUI Prompt Wildcards/wildcards)
 
 Nodes Parameter Explanation:
 
-* **makiwildcards** :
-  * **wildcards_count** : Select the number of wildcards to use.
-  * **randoms** : Whether to keep the seed random. When set to `false`, it selects the row based on the seed value. `true` is for replicating the original content (this parameter was not added before 2025/1/8), meaning random rows.
-  * **seed** : Random seed, used to select a row from the txt file based on the `randoms` mode.
-  * **wildcard_name_{n}** : Select wildcard files.
-  * **text** : The content here will be added before the wildcards, separated by commas.
-* **makitextwildcards**:
-  * The syntax of `randoms` and `seed` in this system mirrors their usage in `makiwildcards`. Here:
+- **makiwildcards** :
+  - **wildcards_count** : Select the number of wildcards to use.
+  - **randoms** : Whether to keep the seed random. When set to `false`, it selects the row based on the seed value. `true` is for replicating the original content (this parameter was not added before 2025/1/8), meaning random rows.
+  - **seed** : Random seed, used to select a row from the txt file based on the `randoms` mode.
+  - **wildcard*name*{n}** : Select wildcard files.
+  - **text** : The content here will be added before the wildcards, separated by commas.
+- **makitextwildcards**:
+  - The syntax of `randoms` and `seed` in this system mirrors their usage in `makiwildcards`. Here:
     - The `text` parameter specifies the textual content requiring randomization.
     - A specific line from the text is selected for output based on the combined values of `randoms` and `seed`, functioning identically to how wildcard systems parse and utilize line-based data from .txt files (e.g., similar to traditional wildcards).
-* **textconcatenate** :
-  * **text_count** : Select the number of texts to use.
-  * **delimiter** : Separator.
-  * **clean_whitespace** : Remove leading and trailing whitespace.
-  * **replace_underscores** : Replace underscores with spaces.
-  * **text_{n}** : Text content.
+- **textconcatenate** :
+  - **text_count** : Select the number of texts to use.
+  - **delimiter** : Separator.
+  - **clean_whitespace** : Remove leading and trailing whitespace.
+  - **replace_underscores** : Replace underscores with spaces.
+  - **text\_{n}** : Text content.
 
 ## Installation
 
@@ -53,6 +53,7 @@ node name：
 - utils/Prompt-Wildcards/makitextwildcards
 - utils/Prompt-Wildcards/textconcatenate
 - utils/Prompt-Wildcards/textconcatenate_v2
+- utils/Prompt-Wildcards/makiwildcards_Advanced
 
 ### License
 
